@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField Component matches the correct snapshot 1`] = `<div class="relative"><input type="email" name="email" placeholder="jane@doe.com" value="john@doe.com" class="login-field w-full border-2 border-grey-light h-10 px-3 bg-white rounded"></div>`;

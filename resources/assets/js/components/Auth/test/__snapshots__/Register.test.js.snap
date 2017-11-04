@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register Component matches the correct snapshot 1`] = `
+<div class="login-form w-3/4 mx-auto">
+    <h3 class="text-brand text-2xl">Welcome to GameReel</h3>
+    <p class="my-2 text-grey-dark">GameReel is the best way to organize your collection of Xbox clips. Sign up below to get started. It's free!</p>
+    <form class="my-6">
+        <!---->
+        <!---->
+        <!---->
+        <!----><button type="submit" class="auth-button w-full h-10 bg-brand hover:bg-purple text-white rounded">Sign Up</button></form>
+    <div class="rounded bg-grey-lighter p-2 text-sm text-black">Already have an account?
+        <router-link to="/auth/login" class="font-semibold text-brand hover:text-purple no-underline">Sign in!</router-link>
+    </div>
+</div>
+`;
