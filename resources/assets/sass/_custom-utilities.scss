@@ -35,3 +35,20 @@
 .transition-bg {
   transition: background-color 150ms ease;
 }
+
+.transition-color {
+  transition: color 150ms ease;
+}
+
+.transition-border-color {
+  transition: border-color 150ms ease;
+}
+
+.tansition-color-bg {
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.transition-color-bg-border {
+  transition: background-color 150ms ease, color 150ms ease,
+    border-color 150ms ease;
+}

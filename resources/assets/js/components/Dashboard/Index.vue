@@ -3,7 +3,7 @@
     <header class="bg-brand flex items-center px-8">
       <img class="block self-center h-12" src="/images/logo-new.svg">
     </header>
-    <div class="sidebar bg-grey-darkest py-8">
+    <div class="sidebar bg-grey-darkest py-8 overflow-y-scroll">
       <Sidebar></Sidebar>
     </div>
     <div class="clips bg-grey-lighter p-8 overflow-y-scroll relative">

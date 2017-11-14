@@ -1,15 +1,15 @@
 <template>
-<div class="sidebar bg-grey-darkest py-8">
+<div>
   <h4 class="text-grey-darker text-sm uppercase mb-4 pl-4 tracking-wider">Games</h4>
   <ul class="games list-reset text-grey">
     <li 
-    class="border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light"
+    class="border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border"
     :class="{'text-purple-light border-purple-light hover:text-purple-light bg-black': currentGame === ''}"
     @click="setCurrentGame('')">All Games</li>
     <li 
       v-for="title in games" 
       :key="title" 
-      class="border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light" 
+      class="border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border"  
       @click="setCurrentGame(title)" 
       :class="{'text-purple-light border-purple-light hover:text-purple-light bg-black': currentGame === title}">
       {{ title }}
@@ -27,7 +27,7 @@
   </div>
   <ul class="tags list-reset text-grey">
     <li 
-      class="flex items-center border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light"
+      class="flex items-center border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border"
       :class="{'text-purple-light border-purple-light hover:text-purple-light bg-black': tag.name === currentTag.name}"
       v-for="tag in tags"
       :key="tag.id"

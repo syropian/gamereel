@@ -51504,7 +51504,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "sidebar bg-grey-darkest py-8" }, [
+  return _c("div", [
     _c(
       "h4",
       {
@@ -51522,7 +51522,7 @@ var render = function() {
           "li",
           {
             staticClass:
-              "border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light",
+              "border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border",
             class: {
               "text-purple-light border-purple-light hover:text-purple-light bg-black":
                 _vm.currentGame === ""
@@ -51542,7 +51542,7 @@ var render = function() {
             {
               key: title,
               staticClass:
-                "border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light",
+                "border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border",
               class: {
                 "text-purple-light border-purple-light hover:text-purple-light bg-black":
                   _vm.currentGame === title
@@ -51603,7 +51603,7 @@ var render = function() {
           {
             key: tag.id,
             staticClass:
-              "flex items-center border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light",
+              "flex items-center border-l-4 border-grey-darkest py-3 px-4 truncate cursor-pointer hover:text-grey-light transition-color-bg-border",
             class: {
               "text-purple-light border-purple-light hover:text-purple-light bg-black":
                 tag.name === _vm.currentTag.name
@@ -52134,7 +52134,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "sidebar bg-grey-darkest py-8" },
+        { staticClass: "sidebar bg-grey-darkest py-8 overflow-y-scroll" },
         [_c("Sidebar")],
         1
       ),

@@ -3810,6 +3810,26 @@ body {
   transition: background-color 150ms ease;
 }
 
+.transition-color {
+  -webkit-transition: color 150ms ease;
+  transition: color 150ms ease;
+}
+
+.transition-border-color {
+  -webkit-transition: border-color 150ms ease;
+  transition: border-color 150ms ease;
+}
+
+.tansition-color-bg {
+  -webkit-transition: background-color 150ms ease, color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.transition-color-bg-border {
+  -webkit-transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
