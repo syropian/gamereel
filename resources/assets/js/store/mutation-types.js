@@ -1,0 +1,7 @@
+export const SET_USER = 'SET_USER'
+export const SET_CLIPS = 'SET_CLIPS'
+export const SET_CURRENT_GAME = 'SET_CURRENT_GAME'
+export const SYNC_CLIP_TAGS = 'SYNC_CLIP_TAGS'
+export const MAP_USER_CLIPS_TO_XBOX_CLIPS = 'MAP_USER_CLIPS_TO_XBOX_CLIPS'
+export const SET_TAGS = 'SET_TAGS'
+export const SET_CURRENT_TAG = 'SET_CURRENT_TAG'

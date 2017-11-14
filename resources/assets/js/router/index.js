@@ -1,58 +1,79 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue'
+import Router from 'vue-router'
+import ls from 'local-storage'
 // import VueFeatherIcon from "vue-feather-icon";
-import Auth from "@/components/Auth/src";
-import Login from "@/components/Auth/src/Login";
-import Register from "@/components/Auth/src/Register";
-import Forgot from "@/components/Auth/src/Forgot";
+import Auth from '@/components/Auth'
+import Login from '@/components/Auth/Login'
+import Register from '@/components/Auth/Register'
+import Forgot from '@/components/Auth/Forgot'
+import Dashboard from '@/components/Dashboard'
 
-Vue.use(Router);
+Vue.use(Router)
 // Vue.use(VueFeatherIcon);
 
 const router = new Router({
-  mode: "history",
+  mode: 'history',
   routes: [
     {
-      path: "*",
-      redirect: "/auth/login"
+      path: '*',
+      redirect: '/auth/login'
     },
     {
-      path: "/auth",
-      name: "Auth",
+      path: '/auth',
+      name: 'Auth',
       component: Auth,
-      redirect: "/auth/login",
+      redirect: '/auth/login',
       children: [
         {
-          path: "login",
-          name: "Login",
+          path: 'login',
+          name: 'Login',
           component: Login
         },
         {
-          path: "register",
-          name: "Register",
+          path: 'register',
+          name: 'Register',
           component: Register
         },
         {
-          path: "forgot",
-          name: "Forgot",
+          path: 'forgot',
+          name: 'Forgot',
           component: Forgot
+        },
+        {
+          path: 'logout',
+          name: 'Logout',
+          meta: {
+            requiresAuth: true
+          },
+          beforeEnter: (to, from, next) => {
+            ls.remove('jwt')
+            next('auth/login')
+          }
         }
       ]
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
-});
+})
 
-// router.beforeEach((to, from, next) => {
-//   const currentUser = firebase.auth().currentUser
-//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+router.beforeEach((to, from, next) => {
+  const token = ls('jwt')
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
-//   if (requiresAuth && !currentUser) {
-//     next('login')
-//   } else if (!requiresAuth && currentUser) {
-//     next('profile')
-//   } else {
-//     next()
-//   }
-// })
+  if (requiresAuth && !token) {
+    next('auth/login')
+  } else if (!requiresAuth && token) {
+    next('dashboard')
+  } else {
+    next()
+  }
+})
 
-export default router;
+export default router

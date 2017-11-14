@@ -1,6 +1,7 @@
-let mix = require("laravel-mix");
-let tailwindcss = require("tailwindcss");
-var fs = require("fs");
+let mix = require('laravel-mix')
+let tailwindcss = require('tailwindcss')
+let fs = require('fs')
+let webpack = require('webpack')
 
 /*
  |--------------------------------------------------------------------------
@@ -16,24 +17,37 @@ var fs = require("fs");
 mix.webpackConfig({
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "resources/assets/js")
+      '@': path.resolve(__dirname, 'resources/assets/js')
     }
-  }
-});
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery'
+    })
+  ]
+})
 
 mix
-  .js("resources/assets/js/app.js", "public/js")
-  .sass("resources/assets/sass/app.scss", "./../resources/assets/sass/temp")
-  .sass("resources/assets/sass/preflight.scss", "./../resources/assets/sass/temp")
-  .combine(["resources/assets/sass/temp/preflight.css", "resources/assets/sass/temp/app.css"], "public/css/app.css")
+  .js('resources/assets/js/app.js', 'public/js')
+  .sass('resources/assets/sass/app.scss', './../resources/assets/sass/temp')
+  .sass(
+    'resources/assets/sass/preflight.scss',
+    './../resources/assets/sass/temp'
+  )
+  .combine(
+    [
+      'resources/assets/sass/temp/preflight.css',
+      'resources/assets/sass/temp/app.css'
+    ],
+    'public/css/app.css'
+  )
   .options({
     extractVueStyles: true,
-    purifyCss: process.env.NODE_ENV === "production",
-    postCss: [tailwindcss("tailwind.js")]
+    purifyCss: process.env.NODE_ENV === 'production',
+    postCss: [tailwindcss('tailwind.js')]
   })
   .then(function() {
-    if (process.env.NODE_ENV === "production") {
-      fs.unlinkSync("resources/assets/sass/temp/preflight.css");
-      fs.unlinkSync("resources/assets/sass/temp/app.css");
-    }
-  });
+    fs.unlinkSync('resources/assets/sass/temp/preflight.css')
+    fs.unlinkSync('resources/assets/sass/temp/app.css')
+  })

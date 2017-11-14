@@ -32,7 +32,9 @@
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.0.1",
@@ -41,6 +43,10 @@
     "jest-vue": "^0.8.2",
     "laravel-mix": "^1.0",
     "node-sass": "^4.5.3",
+    "postcss-combine-duplicated-selectors": "^3.1.0",
+    "postcss-deduplicate": "^1.0.1",
+    "postcss-discard-duplicates": "^2.1.0",
+    "prettier": "^1.8.2",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "sass-loader": "^6.0.6",
@@ -51,11 +57,14 @@
   "dependencies": {
     "axios": "^0.16.2",
     "es6-promise": "^4.1.1",
-    "jquery": "^3.1.1",
+    "jquery": "^3.2.1",
+    "lazysizes": "^4.0.1",
+    "lightcase": "2.3.0",
     "local-storage": "^1.4.2",
     "lodash": "^4.17.4",
     "vue": "^2.1.10",
     "vue-feather-icon": "^1.2.0",
+    "vue-multiselect": "^2.0.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   }

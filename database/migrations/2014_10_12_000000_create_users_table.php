@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('gamertag');
+            $table->string("xuid")->nullable();
             $table->boolean('confirmed')->default(false);
-            $table->string('confirmation_token', 25)->nullable()->unique();
+            $table->string('confirmation_token', 32)->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

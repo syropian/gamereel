@@ -3,6 +3,7 @@
 exports[`Login Component matches the correct snapshot 1`] = `
 <div class="login-form w-3/4 mx-auto">
     <h3 class="text-brand text-2xl">Welcome Back to GameReel</h3>
+    <ul class="bg-red rounded text-sm m-0 mx-0 mb-0 mt-4 p-2 list-none" class="bg-red rounded text-sm m-0 mx-0 mb-0 mt-4 p-2 list-none" style="display:none;"></ul>
     <form class="my-6">
         <!---->
         <!---->

@@ -24,8 +24,9 @@ class AuthController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500); // something went wrong whilst attempting to encode the token
         }
+        $user = auth()->user();
 
-        return response()->json(['token' => $token]);
+        return response()->json(compact('user', 'token'));
     }
 
     public function show(Request $request)

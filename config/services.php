@@ -34,5 +34,8 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'xbox_api' => [
+        'key' => env('XBOX_API_KEY')
+    ]
 
 ];

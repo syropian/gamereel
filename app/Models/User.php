@@ -25,12 +25,17 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function clips()
+    {
+        return $this->hasMany(Clip::class);
+    }
+
     protected $fillable = [
-        'gamertag', 'email', 'password',
+        'gamertag', 'email', 'password', 'xuid',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'confirmation_token'
     ];
 
     protected static function boot()
@@ -38,7 +43,7 @@ class User extends Authenticatable implements JWTSubject
         parent::boot();
 
         static::creating(function ($user) {
-            $user->confirmation_token = str_limit(md5($user->email . str_random()), 25, '');
+            $user->confirmation_token = str_limit(md5($user->email . str_random()), 32, '');
         });
     }
 }
