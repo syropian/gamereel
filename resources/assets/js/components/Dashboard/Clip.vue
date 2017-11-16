@@ -38,7 +38,7 @@
           <feather-icon type="share-2" class="mr-2 fill-none stroke-current relative nudge-t" width="16"></feather-icon>
           <span>{{clipData.shareCount}}</span>
         </div>
-        <button class="bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center transition-bg">
+        <button class="bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center rounded transition-bg">
           <feather-icon type="download-cloud" class="mr-2 fill-none stroke-current relative nudge-t w-4 h-4"></feather-icon>
           <span>Save</span>
         </button>

@@ -1,7 +1,7 @@
 @component('mail::message')
 # One Last Step
 
-We just need you to confirm your email address to prove that you're a human. You get it, right? Coo.
+Hey! Thanks for checking out GameReel. We just need to confirm your email address so we know you're human. Clicking that button below will do the trick.
 
 @component('mail::button', ['url' => url('/api/users/confirm?token=' . $user->confirmation_token)])
 Confirm Email

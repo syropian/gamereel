@@ -8,7 +8,18 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    if (window.EMAIL_CONFIRMED) {
+      this.$swal({
+        type: 'success',
+        title: 'Email Confirmed',
+        text: 'Thanks! I hope you enjoy GameReel.',
+        confirmButtonColor: '#794acf',
+        confirmButtonText: 'Close'
+      })
+    }
+  }
 }
 </script>
 <style lang="scss">

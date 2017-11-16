@@ -10,6 +10,10 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    protected $casts = [
+        'confirmed' => 'boolean'
+    ];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -28,6 +32,13 @@ class User extends Authenticatable implements JWTSubject
     public function clips()
     {
         return $this->hasMany(Clip::class);
+    }
+
+    public function confirm()
+    {
+        $this->confirmed = true;
+        $this->confirmation_token = null;
+        $this->save();
     }
 
     protected $fillable = [

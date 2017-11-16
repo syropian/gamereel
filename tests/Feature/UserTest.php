@@ -14,6 +14,8 @@ class CreateUserTest extends TestCase
     /** @test */
     public function a_guest_can_create_a_new_user()
     {
+        Mail::fake();
+
         $newUser = [
             'gamertag' => 'Syro',
             'email' => 'hello@world.com',
@@ -25,6 +27,7 @@ class CreateUserTest extends TestCase
              ->assertStatus(200);
 
         $this->assertDatabaseHas('users', ['email' => $newUser['email']]);
+        Mail::assertQueued(EmailConfirmation::class);
     }
 
     /** @test */

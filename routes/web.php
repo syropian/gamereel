@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/foo', function () {
-    return GameReel\Models\User::first();
-});
+use Illuminate\Http\Request;
 
-Route::get('/{vue_capture?}', function () {
+Route::get('/{vue_capture?}', function (Request $request) {
+    if ($request->input('email_confirmed')) {
+        return view('index')->with('email_confirmed', true);
+    }
     return view('index');
 })->where('vue_capture', '[\/\w\.-]*');

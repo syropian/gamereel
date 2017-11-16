@@ -6,6 +6,8 @@ use JWTAuth;
 use GameReel\Models\User;
 use GameReel\Lib\XboxClient;
 use Illuminate\Http\Request;
+use GameReel\Mail\EmailConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -25,6 +27,8 @@ class UserController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
+        Mail::to($user)->send(new EmailConfirmation($user));
+        
         return response()->json(compact('user', 'token'));
     }
 }
