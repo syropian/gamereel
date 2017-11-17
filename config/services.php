@@ -36,6 +36,11 @@ return [
     ],
     'xbox_api' => [
         'key' => env('XBOX_API_KEY')
-    ]
+    ],
+    'dropbox' => [
+        'client_id' => env('DROPBOX_KEY'),
+        'client_secret' => env('DROPBOX_SECRET'),
+        'redirect' => env('DROPBOX_REDIRECT_URI'),
+    ],
 
 ];

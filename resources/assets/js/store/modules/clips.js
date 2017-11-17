@@ -72,6 +72,9 @@ const actions = {
       .then(res => {
         commit(SYNC_CLIP_TAGS, res.clip)
       })
+  },
+  saveClipToDropbox({ commit }, clipData) {
+    return client.withAuth().post('/api/clips/save', clipData)
   }
 }
 

@@ -2,9 +2,10 @@
 
 namespace GameReel\Models;
 
+use Illuminate\Support\Carbon;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -39,6 +40,11 @@ class User extends Authenticatable implements JWTSubject
         $this->confirmed = true;
         $this->confirmation_token = null;
         $this->save();
+    }
+
+    public function confirmationPassedDue()
+    {
+        return !$this->confirmed && Carbon::now()->diffInDays($this->created_at) >= 3;
     }
 
     protected $fillable = [

@@ -9,7 +9,9 @@
     "fideloper/proxy": "~3.3",
     "kitetail/zttp": "^0.3.0",
     "laravel/framework": "5.5.*",
+    "laravel/socialite": "^3.0",
     "laravel/tinker": "~1.0",
+    "socialiteproviders/dropbox": "^4.0",
     "tymon/jwt-auth": "1.0.0-rc.1"
   },
   "require-dev": {

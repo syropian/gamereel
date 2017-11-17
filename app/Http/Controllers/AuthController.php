@@ -25,6 +25,10 @@ class AuthController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500); // something went wrong whilst attempting to encode the token
         }
         $user = auth()->user();
+        
+        if ($user->confirmationPassedDue()) {
+            return response()->json(['errors' => ['email_confirmation' => 'You have not confirmed your email address yet. Please check your email to confirm your account.']], 403);
+        }
 
         return response()->json(compact('user', 'token'));
     }

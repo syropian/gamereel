@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'GameReel\Events\Event' => [
             'GameReel\Listeners\EventListener',
         ],
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+        // add your listeners (aka providers) here
+        'SocialiteProviders\Dropbox\DropboxExtendSocialite@handle',
+        ],
     ];
 
     /**

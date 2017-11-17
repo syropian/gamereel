@@ -13,6 +13,9 @@
 
 use Illuminate\Http\Request;
 
+Route::get('/dropbox/auth', 'DropboxController@index');
+Route::get('/dropbox/callback', 'DropboxController@store');
+
 Route::get('/{vue_capture?}', function (Request $request) {
     if ($request->input('email_confirmed')) {
         return view('index')->with('email_confirmed', true);

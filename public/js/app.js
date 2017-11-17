@@ -51747,6 +51747,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vuex__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_local_storage__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_local_storage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_local_storage__);
 
 
 
@@ -51799,6 +51801,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -51817,6 +51820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["c" /* mapGetters */])({
+    user: 'user',
     userTags: 'tags',
     currentGame: 'currentGame',
     currentTag: 'currentTag'
@@ -51857,7 +51861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       immediate: true
     }
   },
-  methods: __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapActions */])(['syncClipTags', 'fetchTags']), {
+  methods: __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapActions */])(['syncClipTags', 'fetchTags', 'saveClipToDropbox']), {
     addTag: function addTag(newTag) {
       var _this = this;
 
@@ -51909,6 +51913,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }, _callee2, _this2);
       }))();
+    },
+    saveClip: function saveClip() {
+      if (!this.user.dropbox_token) {
+        this.$swal({
+          title: 'Please authenticate with Dropbox',
+          text: 'To save clips, you must authenticate with your Dropbox account.',
+          type: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#794acf',
+          confirmButtonText: 'Authenticate'
+        }).then(function (result) {
+          if (result) {
+            window.location.href = '/dropbox/auth?token=' + __WEBPACK_IMPORTED_MODULE_8_local_storage___default()('jwt');
+          }
+        });
+      } else {
+        this.saveClipToDropbox({
+          id: this.clipData.gameClipId,
+          url: this.clipData.gameClipUris[0].uri
+        });
+      }
     }
   })
 });
@@ -52104,7 +52129,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center rounded transition-bg"
+                  "bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center rounded transition-bg",
+                on: { click: _vm.saveClip }
               },
               [
                 _c("feather-icon", {
@@ -53309,6 +53335,11 @@ var actions = {
     return __WEBPACK_IMPORTED_MODULE_3__api_client_js__["a" /* default */].withAuth().put('/api/clip/tags', { id: id, tags: tags }).then(function (res) {
       commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["g" /* SYNC_CLIP_TAGS */], res.clip);
     });
+  },
+  saveClipToDropbox: function saveClipToDropbox(_ref6, clipData) {
+    var commit = _ref6.commit;
+
+    return __WEBPACK_IMPORTED_MODULE_3__api_client_js__["a" /* default */].withAuth().post('/api/clips/save', clipData);
   }
 };
 

@@ -38,7 +38,7 @@
           <feather-icon type="share-2" class="mr-2 fill-none stroke-current relative nudge-t" width="16"></feather-icon>
           <span>{{clipData.shareCount}}</span>
         </div>
-        <button class="bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center rounded transition-bg">
+        <button class="bg-brand hover:bg-purple text-white text-xs cursor-pointer py-2 px-3 inline-flex items-center rounded transition-bg" @click="saveClip">
           <feather-icon type="download-cloud" class="mr-2 fill-none stroke-current relative nudge-t w-4 h-4"></feather-icon>
           <span>Save</span>
         </button>
@@ -51,6 +51,7 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import { mapActions, mapGetters } from 'vuex'
 import { differenceBy } from 'lodash'
+import ls from 'local-storage'
 export default {
   name: 'Clip',
   components: { Multiselect },
@@ -64,6 +65,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      user: 'user',
       userTags: 'tags',
       currentGame: 'currentGame',
       currentTag: 'currentTag'
@@ -101,7 +103,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['syncClipTags', 'fetchTags']),
+    ...mapActions(['syncClipTags', 'fetchTags', 'saveClipToDropbox']),
     async addTag(newTag) {
       const tag = {
         name: newTag,
@@ -115,6 +117,28 @@ export default {
     async syncTags(value, id) {
       await this.syncClipTags({ id: this.clipData.gameClipId, tags: value })
       this.fetchTags()
+    },
+    saveClip() {
+      if (!this.user.dropbox_token) {
+        this.$swal({
+          title: 'Please authenticate with Dropbox',
+          text:
+            'To save clips, you must authenticate with your Dropbox account.',
+          type: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#794acf',
+          confirmButtonText: 'Authenticate'
+        }).then(function(result) {
+          if (result) {
+            window.location.href = `/dropbox/auth?token=${ls('jwt')}`
+          }
+        })
+      } else {
+        this.saveClipToDropbox({
+          id: this.clipData.gameClipId,
+          url: this.clipData.gameClipUris[0].uri
+        })
+      }
     }
   }
 }
